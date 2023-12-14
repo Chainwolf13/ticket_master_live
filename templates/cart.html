@@ -4,10 +4,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>cart</title>
+    <title>Cart</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--Boot-->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/h4style.css' %}">
@@ -17,8 +17,6 @@
 <div class="container-fluid" id="heading">
     {% if user.is_authenticated %}
         <div class="container">
-
-            {#            <img src="{% static 'images/Login.png' %}" id="logo" alt="logoImg" class="log-in-img" type="submit" name="login"> Login In#}
             <p class="float-right"> Welcome, {{ username }}</p>
             <img src="{% static 'images/cart.png' %}" alt="cart" class="col-6 log-in-img">
             <button class="log-in" type="submit" value="logout">
@@ -30,35 +28,37 @@
                 <h2>Your items:</h2>
                 <!-- Loop through the tickets and display details -->
                 {% for ticket in tickets %}
-                    <p>{{ ticket.name }} - {{ ticket.quantity }} - {{ ticket.price }}</p>
-                    <form action="{% url 'update_cart' ticket.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="action" value="remove" class="btn col-2 log-in">Add Ticket</button>
-                    </form>
-
-                    <form action="{% url 'delete_cart' ticket.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="action" value="delete_all" class="btn col-2 log-in">Delete tickets</button>
-                    </form>
-
+                    <div class="row">
+                        <div class="col-6">
+                            <p>{{ ticket.name }} - {{ ticket.quantity }} - {{ ticket.price }}</p>
+                        </div>
+                        <div class="col-3">
+                            <form action="{% url 'update_cart' ticket.id %}" method="POST" >
+                                {% csrf_token %}
+                                <button type="submit" name="action" value="remove" class="btn log-in">Add Ticket</button>
+                            </form>
+                        </div>
+                        <div class="col-3">
+                            <form action="{% url 'delete_cart' ticket.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="action" value="delete_all" class="btn log-in">Delete Tickets</button>
+                            </form>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
-
-            {% else %}
-            <button type="button" class="btn col-4 log-in">
-                <a href="{% url 'login' %}">
-                    <img src="{% static 'images/Login.png' %}" id="logo" alt="logoImg" class="log-in-img"
-                         name="login"> Login In
-                </a>
-            </button>
-
         </div>
-        </div>
+    {% else %}
+        <button type="button" class="btn col-4 log-in">
+            <a href="{% url 'login' %}">
+                <img src="{% static 'images/Login.png' %}" id="logo" alt="logoImg" class="log-in-img" name="login"> Login In
+            </a>
+        </button>
     {% endif %}
 
-<!--Boot part 2-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 </body>
 </html>
