@@ -1,0 +1,194 @@
+/*
+Oliver Calandra
+Palett
+    Harvest Gold - ECA400
+    Cream - EAF8BF
+    Cerulean - 006992
+    Indigo Dye - 27476E
+    Oxford Blue - 007D4A
+*/
+body {
+    background: #EAF8BF;
+    font-family: Verdana;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#heading {
+    background: rgb(0, 13, 74);
+    background: linear-gradient(42deg, rgba(0, 13, 74, 1) 0%, rgba(39, 71, 110, 1) 27%, rgba(0, 105, 146, 1) 50%, rgba(234, 248, 191, 1) 68%, rgba(236, 164, 0, 1) 94%);
+    color: white;
+    padding: 3%;
+}
+
+#no-user {
+    background: rgb(0, 13, 74);
+    background: linear-gradient(42deg, rgba(0, 13, 74, 1) 0%, rgba(39, 71, 110, 1) 27%, rgba(0, 105, 146, 1) 50%, rgba(234, 248, 191, 1) 68%, rgba(236, 164, 0, 1) 94%);
+    color: white;
+    padding: 3%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#reg {
+    padding: 3%;
+    margin: 2%;
+    background: rgb(0, 13, 74);
+    color: white;
+    border-radius: 10%;
+}
+
+.logo {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.log-in-img {
+    width: 10%;
+    padding: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pick-me {
+    color: darkslategrey;
+}
+
+#search-menu {
+    margin: 2%;
+    text-align: center;
+}
+
+.padmar {
+    margin: 2%;
+    text-align: center;
+}
+
+.welcome{
+    background: #27476E;
+    border: #c98d04;
+    border-radius: 10px;
+}
+
+#searchbar {
+
+}
+
+#search {
+    background: #27476E;
+    color: white;
+}
+
+.log-in {
+    color: white;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    border: 1px solid #EAF8BF;
+    border-radius: 7%;
+}
+
+#log-out {
+    background: #27476E;
+    color: white;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 10%;
+    border: 1px solid #EAF8BF;
+    border-radius: 7%;
+}
+
+
+.welcome {
+    background: #27476E;
+    color: red;
+    padding: 0;
+    border: 1px solid #EAF8BF;
+}
+
+#username {
+    width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #c98d04;
+    box-sizing: border-box;
+    font-size: 2rem;
+}
+
+#password {
+    width: 75%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #c98d04;
+    box-sizing: border-box;
+    font-size: 2rem;
+}
+
+#log-me {
+    background: rgb(0, 13, 74);
+    background: linear-gradient(42deg, rgba(0, 13, 74, 1) 0%, rgba(39, 71, 110, 1) 27%, rgba(0, 105, 146, 1) 50%, rgba(234, 248, 191, 1) 68%, rgba(236, 164, 0, 1) 94%);
+    color: white;
+    padding: 2% 0;
+    display: block;
+    text-align: center;
+    border: 2px solid #c98d04;
+    width: 50%;
+
+}
+
+#log-in-button {
+    background: #27476E;
+    display: block;
+    padding: 1%;
+    margin: 2% auto;
+    width: 50%;
+    font-size: 2rem;
+}
+
+.log-in-txt {
+    color: white;
+}
+
+.txt-field {
+    background: #27476E;
+    color: white;
+    padding: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search-btn {
+    background: rgb(0, 13, 74);
+    color: white;
+    text-align: center;
+    padding: 0;
+}
+
+.style-card {
+    background: rgba(236, 164, 0, 0.6);
+}
+
+.results-cart {
+    text-align: center;
+    background: rgba(0, 105, 146);
+    color: white;
+    border: 1px solid #c98d04;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
