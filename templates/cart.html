@@ -16,16 +16,16 @@
 
 <div class="container-fluid" id="heading">
     {% if user.is_authenticated %}
-        <div class="container">
+        <div class="container" id="heading">  <!-- Removed the redundant div here -->
             <div class="row">
-                <div class="col-4">
+                <div class="col-2">
                     <p>Welcome, {{ username }}</p>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-7 text-center">
                     <img src="{% static 'images/cart.png' %}" alt="cart" class="log-in-img">
                     <h1>Your Cart: {{ tickets|length }}</h1>
                 </div>
-                <div class="col-4 text-right">
+                <div class="col-1 text-right">
                     <button class="log-in" type="submit" value="logout">
                         <a href="{% url 'logout' %}">Log Out</a>
                     </button>
@@ -33,7 +33,7 @@
             </div>
             <hr>
             <div>
-{#                <h2>Your items:</h2>#}
+                {#                <h2>Your items:</h2>#}
                 <!-- Loop through the tickets and display details -->
                 {% for ticket in tickets %}
                     <div class="row align-items-center">
@@ -57,6 +57,7 @@
                 {% endfor %}
             </div>
         </div>
+</div>
     {% else %}
         <button type="button" class="btn col-4 log-in">
             <a href="{% url 'login' %}">
@@ -65,9 +66,9 @@
         </button>
     {% endif %}
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>

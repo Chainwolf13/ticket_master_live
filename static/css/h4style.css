@@ -18,19 +18,19 @@ body {
     flex-direction: column;
 }
 
-.row.align-items-center {
-    margin-bottom: 10px; /* Adjust the margin between rows as needed */
-}
+/*.row.align-items-center {*/
+/*    margin-bottom: 10px; !* Adjust the margin between rows as needed *!*/
+/*}*/
 
-.col-4 {
-    /* Adjust the width of the ticket details */
-    width: 50%;
-}
+/*.col-4 {*/
+/*    !* Adjust the width of the ticket details *!*/
+/*    width: 50%;*/
+/*}*/
 
-.col-2 {
-    /* Adjust the width of the buttons */
-    width: 25%;
-}
+/*.col-2 {*/
+/*    !* Adjust the width of the buttons *!*/
+/*    width: 25%;*/
+/*}*/
 
 #heading {
     background: rgb(0, 13, 74);
@@ -103,7 +103,7 @@ body {
 
 .log-in {
     /*Jah: this is for the cart buttons*/
-    color: white;
+    color: black;
     padding: 0;
     /*margin-left: auto;*/
     /*margin-right: auto;*/
