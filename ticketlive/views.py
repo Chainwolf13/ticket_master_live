@@ -24,7 +24,7 @@ def view_results(request):
     return render(request, 'index.html')
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def index(request):
     # Initialize searchEvent with a default value
     # searchEvent = 'default_event_type'
