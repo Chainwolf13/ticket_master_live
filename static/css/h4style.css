@@ -32,9 +32,17 @@ body {
 /*    width: 25%;*/
 /*}*/
 
+/* Jah (12/14/2023): Really orange background*/
+/*#heading {*/
+/*    background: rgb(0, 13, 74);*/
+/*    background: linear-gradient(42deg, rgba(0, 13, 74, 1) 0%, rgba(39, 71, 110, 1) 27%, rgba(0, 105, 146, 1) 50%, rgba(234, 248, 191, 1) 68%, rgba(236, 164, 0, 1) 94%);*/
+/*    color: white;*/
+/*    padding: 3%;*/
+/*}*/
+
 #heading {
     background: rgb(0, 13, 74);
-    background: linear-gradient(42deg, rgba(0, 13, 74, 1) 0%, rgba(39, 71, 110, 1) 27%, rgba(0, 105, 146, 1) 50%, rgba(234, 248, 191, 1) 68%, rgba(236, 164, 0, 1) 94%);
+    background: linear-gradient(42deg, rgba(0, 13, 74, 1) 0%, rgba(39, 71, 110, 1) 27%, rgba(0, 105, 146, 1) 50%, rgba(200, 220, 255, 1) 68%, rgba(236, 164, 0, 1) 94%);
     color: white;
     padding: 3%;
 }
