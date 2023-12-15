@@ -106,10 +106,14 @@ def index(request):
                 # Append the user details dictionary to the user_list
                 event_list.append(event_details)
 
-
         # Create a context dictionary with the user_list and render the 'index.html' template
-        context = {'events': event_list}
+        # context = {'events': event_list}  # context = {'events': event_list, 'username': request.user.username}
 
+        # if request.user.is_authenticated:
+        #     context = {'events': event_list, 'username': request.user.username}
+        #     return render(request, 'index.html', context)
+        # else:
+        context = {'events': event_list, 'username': request.user.username}
         return render(request, 'index.html', context)
 
         # all other cases, just render the page without sending/passing any context to the template
