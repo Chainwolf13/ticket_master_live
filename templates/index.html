@@ -49,6 +49,12 @@
     <h2 class="padmar">Quickly find tickets around you!</h2>
     <p class="padmar">~This is a Ticket Master recreation~</p>
 
+{% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+{% endif %}
+
 
     <form id="search-menu" action = "{% url 'index' %}" method="post">
         <div class="row see-txt-bg">
@@ -59,7 +65,7 @@
             <!--https://www.educba.com/html-search-bar/-->
             {% csrf_token %}
             <input type="text" name="term" placeholder="Search for event"  class="col-4">
-            <input type="text" name="city" placeholder="Search in state"  class="col-4">
+            <input type="text" name="state" placeholder="Search in state"  class="col-4">
             <input class="btn btn-primary" type="submit" value="GO" class="col-4">
 
         </div>

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect, get_object_or_404
 # Make sure to install requests using 'pip install requests' on your terminal, otherwise 'requests' will not work
 import requests
@@ -38,13 +39,13 @@ def index(request):
         # searchState = request.POST['searchbar']
 
         search_term = request.POST.get('term')
-        search_city = request.POST.get('city')
+        search_city = request.POST.get('state')
 
-        print(search_term)
-        print(search_city)
+        # print(search_term)
+        # print(search_city)
 
         # Check if searchState is empty
-        if not search_term:
+        if not search_term or not search_city:
             # Set up an error message using Django's message utility to inform the user
             messages.info(request, 'Both event and state are required fields.')
             #     # redirect user to the index page
@@ -54,7 +55,7 @@ def index(request):
 
         # call get_tickets function() to get the data from the API
         event_tickets = get_tickets(search_term, search_city)
-        print(event_tickets)
+        # print(event_tickets)
 
         # If the request to fetch data from randomuser was unsuccessful or returned None
         if event_tickets is None:
@@ -63,6 +64,20 @@ def index(request):
             # redirect user to the index page
             return redirect('index')
 
+        # Valid list of states
+        valid_states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+                        'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+                        'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+                        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
+                        'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+                        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+                        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+
+        # Check if the entered state is valid
+        if search_city.capitalize() not in valid_states:
+            error_message = 'Please enter a valid state.'
+            # Render the template with the error message
+            return render(request, 'index.html', {'error_message': error_message})
         else:
 
             # print the response for testing purpose (open "Run" at the bottom to see what is printed)
