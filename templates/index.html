@@ -56,20 +56,14 @@
 {% endif %}
 
 
-    <form id="search-menu" action = "{% url 'index' %}" method="post">
-        <div class="row see-txt-bg">
-
-
-            <!-- we'll leave this action empty meaning by default use existing id -->
-
-            <!--https://www.educba.com/html-search-bar/-->
-            {% csrf_token %}
-            <input type="text" name="term" placeholder="Search for event"  class="col-4">
-            <input type="text" name="state" placeholder="Search in city"  class="col-4">
-            <input class="btn btn-primary" type="submit" value="GO" class="col-4">
-
-        </div>
-    </form>
+<form id="search-menu" action="{% url 'index' %}" method="post">
+    <div class="container-fluid row see-txt-bg text-center">
+        {% csrf_token %}
+        <input type="text" name="term" placeholder="Search for event" class="col-4">
+        <input type="text" name="state" placeholder="Search in city" class="col-4">
+        <input class="btn btn-primary col-4" type="submit" value="GO">
+    </div>
+</form>
 
     {% for event in events %}
         <div class="padding-margin border shadow p-4 mb-4 rounded style-card">
