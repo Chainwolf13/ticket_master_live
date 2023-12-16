@@ -55,7 +55,7 @@ def index(request):
 
         # call get_tickets function() to get the data from the API
         event_tickets = get_tickets(search_term, search_city)
-        # print(event_tickets)
+        print(event_tickets)
 
         # If the request to fetch data from randomuser was unsuccessful or returned None
         if event_tickets is None:
@@ -64,19 +64,22 @@ def index(request):
             # redirect user to the index page
             return redirect('index')
 
-        # Valid list of states
-        valid_states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
-                        'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-                        'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-                        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
-                        'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-                        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-                        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+        try:
+            # Extract the cities from the API response
+            api_cities = [event['_embedded']['venues'][0]['city']['name'] for event in
+                          event_tickets['_embedded']['events']]
 
-        # Check if the entered state is valid
-        if search_city.capitalize() not in valid_states:
-            error_message = 'Please enter a valid state.'
-            # Render the template with the error message
+            # Extract the city from the user input
+            user_city = search_city.capitalize()
+
+            # Check if the entered city is in the list of cities from the API response
+            if user_city not in api_cities:
+                error_message = 'Please enter a valid City.'
+                # Render the template with the error message
+                return render(request, 'index.html', {'error_message': error_message})
+        except KeyError:
+            # Handle the case where the city information is not present in the API response
+            error_message = 'Error processing API response. Please try again.'
             return render(request, 'index.html', {'error_message': error_message})
         else:
 
