@@ -13,22 +13,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 
 
-def view_home(request):
-    response = requests.get(
-        'https://app.ticketmaster.com/discovery/v2/events.json?sort=date,asc&tIrapX2vWcsnEvoKHUkI25bDu0lTcYVT')
-    print(response.json())
-
-    return render(request, 'index.html')
-
-
-def view_results(request):
-    return render(request, 'index.html')
-
-
-# @login_required(login_url='login')
 def index(request):
-    # Initialize searchEvent with a default value
-    # searchEvent = 'default_event_type'
     # clear_all_tickets = Ticket.objects.all().delete()
 
     # if the request method is a post
@@ -82,17 +67,14 @@ def index(request):
             error_message = 'Error processing API response. Please try again.'
             return render(request, 'index.html', {'error_message': error_message})
         else:
-
-            # print the response for testing purpose (open "Run" at the bottom to see what is printed)
-            # print(eventTickets.encode('utf-8'))
             # Store each event information in a variable
             events = event_tickets['_embedded']['events']
 
             # Initialize an empty list to store user data
             event_list = []
 
-            # Iterate through each user in the 'users' list coming from the api
-            # Rather than directly passing the "users" array to the template,
+            # Iterate through each event in the 'events' list coming from the api
+            # Rather than directly passing the "events" array to the template,
             # the following approach allows server-side processing and formatting of specific data (e.g., date).
             # So, the template only needs to plug in the preprocessed information.
             for event in events:
@@ -102,7 +84,6 @@ def index(request):
                 venue_address = event['_embedded']['venues'][0]['address']['line1']
                 event_date = event['dates']['start']['localDate']
                 event_formal_start_time = event['dates']['start']['localTime']
-                # event_ticket_link = event['outlets'][0]['url']
                 event_price = 60  # default value for ticket prices if they don't exist
                 if 'priceRanges' in event:
                     if event['priceRanges']:
@@ -124,13 +105,6 @@ def index(request):
                 # Append the user details dictionary to the user_list
                 event_list.append(event_details)
 
-        # Create a context dictionary with the user_list and render the 'index.html' template
-        # context = {'events': event_list}  # context = {'events': event_list, 'username': request.user.username}
-
-        # if request.user.is_authenticated:
-        #     context = {'events': event_list, 'username': request.user.username}
-        #     return render(request, 'index.html', context)
-        # else:
         context = {'events': event_list, 'username': request.user.username}
         return render(request, 'index.html', context)
 
@@ -170,14 +144,6 @@ def get_tickets(search_term, search_city):
 
         # Return None to indicate failure
         return None
-
-
-def store_tickets_to_database(request, ticket):
-    context = {}  # empty dictionary
-    for ticket in ticket:
-        context = ticket
-
-    return render(request, 'cart.html', context)
 
 
 def clear_tickets_from_database(request, ticket):
@@ -224,18 +190,6 @@ def cart_add(request):
         return redirect('cart_view')  # or any other response you want
         # Redirect or render the appropriate response
     return redirect('index')
-
-
-def cart_pull(request):
-    # open cart / view
-    # user presses add to cart (needs quantity)
-    # asks for the quantity (drop down limit 10 tickets or text field)
-    # data is saved to the structure
-    # user has a ticket cart field
-    # if authentic then cart icon appears (top right) and once pressed
-    # comes to this method which will take you to cart.html and load all your tickets
-
-    return render(request, 'cart.html')
 
 
 def register_view(request):
