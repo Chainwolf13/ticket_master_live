@@ -40,7 +40,7 @@ def index(request):
 
         # call get_tickets function() to get the data from the API
         event_tickets = get_tickets(search_term, search_city)
-        print(event_tickets)
+        #print(event_tickets)
 
         # If the request to fetch data from randomuser was unsuccessful or returned None
         if event_tickets is None:
