@@ -26,8 +26,8 @@ def index(request):
         search_term = request.POST.get('term')
         search_city = request.POST.get('state')
 
-        # print(search_term)
-        # print(search_city)
+        print(search_term)
+        print(search_city)
 
         # Check if searchState is empty
         if not search_term or not search_city:
@@ -83,7 +83,8 @@ def index(request):
                 image = event['images'][0]['url']
                 venue_address = event['_embedded']['venues'][0]['address']['line1']
                 event_date = event['dates']['start']['localDate']
-                event_formal_start_time = event['dates']['start']['localTime']
+                # event_formal_start_time = event['dates']['start']['localTime']
+                event_formal_start_time = event['dates']['start'].get('localTime','TBA') # Default to 'TBA' if missing (Updated: 4:37 PM on 2/11/25)
                 event_price = 60  # default value for ticket prices if they don't exist
                 if 'priceRanges' in event:
                     if event['priceRanges']:
@@ -135,6 +136,7 @@ def get_tickets(search_term, search_city):
 
         # Parse the JSON data from the response
         data = response.json()
+        # print(data)
 
         # Return the parsed data
         return data
