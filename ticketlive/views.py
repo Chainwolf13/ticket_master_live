@@ -83,7 +83,7 @@ def index(request):
                 image = event['images'][0]['url']
                 venue_address = event['_embedded']['venues'][0]['address']['line1']
                 event_date = event['dates']['start']['localDate']
-                # event_formal_start_time = event['dates']['start']['localTime']
+                # event_formal_start_time = event['dates']['start']['localTime'] # This line started to crash without TBA 2/11/25
                 event_formal_start_time = event['dates']['start'].get('localTime','TBA') # Default to 'TBA' if missing (Updated: 4:37 PM on 2/11/25)
                 event_price = 60  # default value for ticket prices if they don't exist
                 if 'priceRanges' in event:
