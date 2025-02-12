@@ -16,36 +16,37 @@
 <body>
 
 <div class="container-fluid" id="heading">
-    {% if user.is_authenticated %}
-        <div class="container" >
-
-                <p> Welcome, {{ username }} </p>  <!-- class="welcome" -->
-                <img src="{% static 'images/Login.png' %}" class="log-in-img" alt="login">
-
+    <div class="container-lg">  <!-- Use container-lg to maintain a nice width -->
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ username }}</p>
+            <img src="{% static 'images/Login.png' %}" class="log-in-img" alt="login">
             <div class="padmar">
-                <button  class="btn-info" type="submit" value="logout">
+                <button class="btn-info" type="submit" value="logout">
                     <a href="{% url 'logout' %}">Log Out</a>
                 </button>
                 <button class="btn-info" type="submit" value="cart">
                     <a href="{% url 'cart_view' %}">View Cart</a>
                 </button>
             </div>
-            {% else %}
+        {% else %}
+            <div class="text-center">
                 <button type="button" class="btn col-4 log-in">
                     <a href="{% url 'login' %}">
                         <img src="{% static 'images/Login.png' %}" id="logo" alt="logoImg" class="log-in-img" type="submit" name="login"> Login In
                     </a>
                 </button>
+            </div>
+        {% endif %}
 
+        <div class="logo-container text-center">
+            <img src="{% static 'images/LogoTwo.png' %}" id="logoTwo" class="img-fluid" alt="logoImg">
         </div>
 
-    {% endif %}
+        <h1 class="padmar">Ticket Master</h1>
+        <h2 class="padmar">Please Create a Login to create and view cart at the top of screen!</h2>
+        <p class="padmar">Example Query: Music, Hartford</p>
+    </div>
 
-
-    <img src="{% static 'images/LogoTwo.png' %}" id="logo" alt="logoImg">
-    <h1 class="padmar">Ticket Master</h1>
-    <h2 class="padmar">Quickly find tickets around you!</h2>
-    <p class="padmar">~This is a Ticket Master recreation~</p>
 
 {% if error_message %}
     <div class="alert alert-danger" role="alert">
@@ -63,18 +64,18 @@
     </div>
 </form>
 
-    {% for event in events %}
-        <div class="padding-margin border shadow p-4 mb-4 rounded style-card">
-            <div class="container-xl padding overflow-hidden">
-                <div class="row">
-                    <!--Text & Button-->
-                    <div class="col-xl-6">
-                        <h2 class="display-2" id=""> {{ event.eventName }} </h2>
-                        <h2 class="lead">Location: local <br> Address: {{ event.Address }} </h2>
-                        <h2 class="lead">When: {{ event.Date }} @ {{ event.Time }} </h2>
-                        <h2 class="lead">Buy here: <a href="{{ event.event_ticket_link }}">Tickets</a></h2>
-                        {% if user.is_authenticated %}
-                             <form method="post" action="{% url 'cart_add' %}">
+{% for event in events %}
+    <div class="padding-margin border shadow p-3 mb-4 rounded style-card">
+        <div class="container-xl padding overflow-hidden">
+            <div class="row">
+                <!-- Text & Button -->
+                <div class="col-sm-6">
+                    <h2 class="display-2" id="">{{ event.eventName }}</h2>
+                    <h2 class="lead">Location: local <br> Address: {{ event.Address }} </h2>
+                    <h2 class="lead">When: {{ event.Date }} @ {{ event.Time }} </h2>
+                    <h2 class="lead">Buy here: <a href="{{ event.event_ticket_link }}">Tickets</a></h2>
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'cart_add' %}">
                             {% csrf_token %}
                             <p class="lead">
                                 <input type="hidden" name="event_name" value="{{ event.eventName }}">
@@ -83,20 +84,27 @@
                                 <input type="hidden" name="address" value="{{ event.Address }}">
                                 <input type="hidden" name="time" value="{{ event.Time }}">
                                 <input type="hidden" name="image" value="{{ event.image }}">
-                            <button type="submit" value="userCart" class="btn col-4 log-in">Add to cart</button>
-                            <button type="submit" value="wishlist" class="btn col-4 log-in">Add to wishlist</button>
-                        </p>
-                             </form>
-                        {% endif %}
-                    </div>
-                    <!--Image-->
-                    <div class="col-xl-6">
-                        <img src="{{ event.image }}" class="img-fluid image-style" alt="Pic">
-                    </div>
+
+                                <!-- Buttons placed side by side using flex -->
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" value="userCart" class="btn col-5 log-in">Add to cart</button>
+                                    <button type="submit" value="wishlist" class="btn col-5 log-in">Add to wishlist</button>
+                                </div>
+                            </p>
+                        </form>
+                    {% endif %}
+                </div>
+                <!-- Image -->
+                <div class="col-sm-6">
+{#                    <img src="{{ event.image }}" class="img-fluid image-style" alt="Pic">#}
+                    {# Update for Image to be same size: 2/11/25 #}
+                    <img src="{{ event.image }}" class="img-fluid image-style" alt="Pic">
                 </div>
             </div>
         </div>
-    {% endfor %}
+    </div>
+{% endfor %}
+</div>
 
 
     <!--Boot part 2-->

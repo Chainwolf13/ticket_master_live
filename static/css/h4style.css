@@ -47,6 +47,43 @@ body {
     padding: 3%;
 }
 
+/* 2/11/25 Update: */
+/*#heading {*/
+/*    background-color: #f8f9fa; !* Adjust to match your theme *!*/
+/*    padding: 20px 0;*/
+/*    text-align: center;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.container {*/
+/*    background-color: inherit; !* Keeps the background color *!*/
+/*    padding: 20px;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*.card {*/
+/*    width: 100%; !* or specific width for the card *!*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center; !* Centers the content in the card *!*/
+/*    overflow: hidden; !* Prevents the image from overflowing the card *!*/
+/*}*/
+
+.image-container {
+    width: 631.58px;        /* Fixed width */
+    height: 473.55px;       /* Fixed height */
+    overflow: hidden;       /* Hides parts of the image that go beyond the container */
+}
+
+.image-style {
+    width: 50%;            /* Makes the image span the full width of the container */
+    height: 50%;           /* Makes the image span the full height of the container */
+    object-fit: cover;      /* Ensures the image covers the container without stretching */
+}
+
+
+/* end of 2/11/25 update */
+
 /*#no-user {*/
 /*    background: rgb(0, 13, 74);*/
 /*    background: linear-gradient(42deg, rgba(0, 13, 74, 1) 0%, rgba(39, 71, 110, 1) 27%, rgba(0, 105, 146, 1) 50%, rgba(234, 248, 191, 1) 68%, rgba(236, 164, 0, 1) 94%);*/
@@ -217,3 +254,20 @@ body {
     margin-right: auto;
 }
 
+/* 5:09 PM on 2/11/25
+   Update to fix CSS on logged out state where TicketMaster 2.0 takes up entire width of screen which makes the page looks uglier.*/
+
+/*#logoTwo {*/
+/*    max-width: 300px; !* Adjust as needed *!*/
+/*    width: auto;*/
+/*    height: auto;*/
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*.logo-container {*/
+/*    width: auto;*/
+/*    max-width: 50%; !* Adjust percentage based on layout *!*/
+/*    margin: 0 auto;*/
+/*    text-align: center;*/
+/*}*/

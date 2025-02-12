@@ -81,6 +81,10 @@ def index(request):
                 # Extract relevant information from the user dictionary
                 event_name = event['name']
                 image = event['images'][0]['url']
+                # Update: Get highest image resolution available 2/11/25
+                if event['images']:
+                    # image = max(event['images'], key = lambda x: x.get('width', 0))['url'] # works but we can get an image where height is too tall
+                    image = get_image_url(event['images'])  # Fetch the appropriate image URL
                 venue_address = event['_embedded']['venues'][0]['address']['line1']
                 event_date = event['dates']['start']['localDate']
                 # event_formal_start_time = event['dates']['start']['localTime'] # This line started to crash without TBA 2/11/25
@@ -112,6 +116,33 @@ def index(request):
         # all other cases, just render the page without sending/passing any context to the template
 
     return render(request, 'index.html')
+
+# Update: 2/11/25 Function to get image of right size
+# def get_image_url(image_data):
+#     image_url = image_data[0]['url']  # Default large image
+#
+#     # Look for smaller images if needed
+#     for img in image_data:
+#         if img.get('height', 0) <= 500:
+#             image_url = img['url']  # Use smaller image if height is <= 500px
+#             break
+#
+#     return image_url
+
+def get_image_url(image_data):
+    # Default to the largest image if no suitable image is found
+    image_url = image_data[0]['url']  # Default to the first image
+
+    # Loop through images to find one with height > 200px and <= 500px
+    for img in image_data:
+        img_height = img.get('height', 0)
+
+        # Check if the image height is within the desired range
+        if 300 < img_height <= 500:
+            image_url = img['url']  # Use this image if it meets the criteria
+            break  # Stop searching once we find a match
+
+    return image_url
 
 
 def get_tickets(search_term, search_city):
